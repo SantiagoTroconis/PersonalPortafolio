@@ -9,72 +9,126 @@ All colors MUST be HSL.
 @layer base {
   :root {
     --background: 240 10% 3.9%;
+    /* Deep Slate */
     --foreground: 0 0% 98%;
+    /* Pure White for max contrast */
 
-    --card: 240 8% 8%;
+    --card: 240 10% 6%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 240 8% 8%;
+    --popover: 240 10% 6%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 263 70% 60%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 210 100% 96%;
+    /* Ice White/Blueish tint for elegance */
+    --primary-foreground: 240 10% 3.9%;
 
-    --secondary: 195 100% 50%;
+    --secondary: 240 5% 20%;
+    /* Dark Gray Secondary */
     --secondary-foreground: 0 0% 100%;
 
     --muted: 240 5% 15%;
-    --muted-foreground: 240 5% 65%;
+    --muted-foreground: 240 5% 80%;
+    /* Much brighter muted text for readability */
 
-    --accent: 280 100% 70%;
+    --accent: 240 5% 25%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 8% 15%;
-    --input: 240 8% 15%;
-    --ring: 263 70% 60%;
+    --border: 240 5% 20%;
+    /* Slightly lighter borders */
+    --input: 240 5% 20%;
+    --ring: 210 100% 96%;
 
-    --radius: 1rem;
+    --radius: 0.75rem;
 
-    /* Custom design tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(263 70% 60%), hsl(280 100% 70%));
-    --gradient-secondary: linear-gradient(135deg, hsl(195 100% 50%), hsl(263 70% 60%));
-    --gradient-accent: linear-gradient(135deg, hsl(280 100% 70%), hsl(320 100% 65%));
-    
-    --glow-primary: 0 0 40px hsl(263 70% 60% / 0.5);
-    --glow-secondary: 0 0 40px hsl(195 100% 50% / 0.5);
-    
-    --glass-bg: hsl(240 8% 12% / 0.6);
-    --glass-border: hsl(240 8% 25% / 0.3);
-    
-    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Custom design tokens - Elegant & High Contrast */
+    --gradient-primary: linear-gradient(135deg, hsl(0 0% 100%), hsl(210 20% 80%));
+    --gradient-secondary: linear-gradient(135deg, hsl(240 5% 90%), hsl(240 5% 60%));
+
+    --glow-primary: 0 0 30px hsl(210 100% 96% / 0.2);
+    --glow-secondary: 0 0 30px hsl(240 5% 60% / 0.15);
+
+    --glass-bg: hsl(240 10% 8% / 0.8);
+    /* Slightly more opaque for better text readability */
+    --glass-border: hsl(0 0% 100% / 0.15);
+
+    --transition-smooth: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 }
 
 @layer utilities {
   .glass-card {
     background: var(--glass-bg);
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius);
   }
-  
+
   .gradient-text {
     background: var(--gradient-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    /* Subtle shadow for legibility */
   }
-  
+
+  .gradient-text-secondary {
+    background: var(--gradient-secondary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
   .glow-effect {
     box-shadow: var(--glow-primary);
     transition: var(--transition-smooth);
   }
-  
+
   .glow-effect:hover {
     box-shadow: var(--glow-primary), var(--glow-secondary);
+    transform: translateY(-2px);
+    border-color: hsl(0 0% 100% / 0.3);
+  }
+
+  .text-shadow-glow {
+    text-shadow: 0 0 30px hsl(0 0% 100% / 0.4);
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 1s ease-out;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
   }
 }
 
@@ -83,7 +137,39 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html,
+  body,
+  #root {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    background: transparent;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    letter-spacing: -0.02em;
+    @apply text-foreground;
+    /* Ensure headings are white */
+  }
+
+  p {
+    @apply text-muted-foreground;
   }
 }

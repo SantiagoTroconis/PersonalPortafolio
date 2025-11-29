@@ -1,0 +1,51 @@
+
+[
+  {
+    "title": "Automatización de Tareas con IA: Más Allá de Excel",
+    "excerpt": "Descubre cómo utilizar modelos de IA para automatizar flujos de trabajo complejos, procesar información no estructurada y tomar decisiones inteligentes, llevando la productividad a un nuevo nivel.",
+    "date": "28 de oct, 2025",
+    "readTime": "7 min de lectura",
+    "image": "https://images.unsplash.com/photo-1678483747102-54d94e85fac5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "content": "El contenido completo sobre la automatización con IA vendrá aquí."
+  },
+  {
+    "title": "Creando un Asistente con Modelos de Lenguaje (LLMs) y RAG",
+    "excerpt": "Aprende paso a paso a construir tu propio asistente de chat inteligente utilizando un LLM y la técnica de Generación Aumentada por Recuperación (RAG) para responder preguntas sobre tus propios datos.",
+    "date": "24 de oct, 2025",
+    "readTime": "10 min de lectura",
+    "image": "https://images.unsplash.com/photo-1693236933293-05a5173a6c2a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "content": "El contenido completo sobre la creación de un asistente con LLMs y RAG vendrá aquí."
+  },
+  {
+    "title": "De Cero a App Multiplataforma: React Native vs. Flutter en 2025",
+    "excerpt": "Un análisis comparativo profundo entre React Native y Flutter. ¿Cuál deberías elegir para tu próximo proyecto? Evaluamos rendimiento, ecosistema, curva de aprendizaje y futuro.",
+    "date": "20 de oct, 2025",
+    "readTime": "9 min de lectura",
+    "image": "https://images.unsplash.com/photo-1617042375876-a13e36732a04?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "content": "El contenido completo de la comparativa entre React Native y Flutter vendrá aquí."
+  },
+  {
+    "title": "El Futuro del Desarrollo Web",
+    "excerpt": "Explorando tendencias y tecnologías emergentes que están dando forma a la próxima generación de aplicaciones web. Desde la integración de IA hasta la computación en el borde, el panorama está evolucionando rápidamente.",
+    "date": "15 de dic, 2024",
+    "readTime": "5 min de lectura",
+    "image": "https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "content": "El panorama del desarrollo web está experimentando una profunda transformación."
+  },
+  {
+    "title": "Construyendo Sistemas Escalables",
+    "excerpt": "Principios y patrones clave para diseñar sistemas que puedan manejar el crecimiento con elegancia. Aprende de experiencias del mundo real y mejores prácticas.",
+    "date": "10 de dic, 2024",
+    "readTime": "8 min de lectura",
+    "image": "https://images.unsplash.com/photo-1544890225-2fde0e66f352?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "content": "Construir sistemas que escalen no se trata solo de manejar más usuarios."
+  },
+  {
+    "title": "Sistemas de Diseño que Funcionan",
+    "excerpt": "Creación y mantenimiento de sistemas de diseño que empoderan a los equipos y aseguran la consistencia en todos los productos. Mejores prácticas de líderes de la industria.",
+    "date": "5 de dic, 2024",
+    "readTime": "6 min de lectura",
+    "image": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "content": "Un sistema de diseño bien elaborado es más que una simple colección de componentes."
+  }
+]

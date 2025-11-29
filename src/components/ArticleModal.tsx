@@ -6,6 +6,7 @@ interface Article {
   content: string;
   date: string;
   readTime: string;
+  image: string;
 }
 
 interface ArticleModalProps {
@@ -21,6 +22,9 @@ export const ArticleModal = ({ article, open, onOpenChange }: ArticleModalProps)
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto glass-card border-border">
         <DialogHeader>
+          <div className="relative w-full h-64 mb-4 rounded-lg overflow-hidden">
+            <img src={article.image} alt={article.title} className="w-full h-full object-cover" />
+          </div>
           <DialogTitle className="text-3xl font-bold gradient-text pr-8">
             {article.title}
           </DialogTitle>

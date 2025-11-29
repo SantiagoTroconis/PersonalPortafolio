@@ -6,15 +6,19 @@ interface ArticleCardProps {
   excerpt: string;
   date: string;
   readTime: string;
+  image: string;
   onClick: () => void;
 }
 
-export const ArticleCard = ({ title, excerpt, date, readTime, onClick }: ArticleCardProps) => {
+export const ArticleCard = ({ title, excerpt, date, readTime, image, onClick }: ArticleCardProps) => {
   return (
     <Card 
       onClick={onClick}
-      className="glass-card p-6 cursor-pointer transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl border-border group"
+      className="glass-card p-6 cursor-pointer transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl border-border group overflow-hidden"
     >
+      <div className="relative w-full h-40 mb-4 rounded-lg overflow-hidden">
+        <img src={image} alt={title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+      </div>
       <div className="space-y-4">
         <h3 className="text-xl font-bold text-foreground group-hover:gradient-text transition-all duration-300">
           {title}
