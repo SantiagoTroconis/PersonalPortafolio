@@ -19,7 +19,7 @@ varying vec2 vUv;
 void main() {
   vec2 uv = vUv;
   
-  // Correct aspect ratio for interaction
+  // Aspect ratio correction
   float aspect = uResolution.x / uResolution.y;
   vec2 aspectUV = uv;
   aspectUV.x *= aspect;
@@ -27,41 +27,41 @@ void main() {
   vec2 aspectMouse = uMouse;
   aspectMouse.x *= aspect;
   
-  // Grid configuration
+  // Grid
   float gridSize = 20.0;
-  // Adjust grid density based on aspect ratio to keep cells square
   vec2 gridUV = uv * vec2(gridSize * aspect, gridSize);
-  
   vec2 grid = fract(gridUV);
-  float lineThickness = 0.03; // Slightly thicker for elegance
   
-  float lines = step(lineThickness, grid.x) * step(lineThickness, grid.y);
-  lines = 1.0 - lines;
+  // Líneas mucho más suaves usando smoothstep en lugar de step
+  // Esto elimina el efecto "pixelado" o duro
+  float lineThickness = 0.05;
+  float linesX = smoothstep(0.0, lineThickness, grid.x) * smoothstep(1.0, 1.0 - lineThickness, grid.x);
+  float linesY = smoothstep(0.0, lineThickness, grid.y) * smoothstep(1.0, 1.0 - lineThickness, grid.y);
   
-  // Mouse interaction
+  // Invertir para obtener las líneas
+  float lines = 1.0 - (linesX * linesY);
+  
+  // Mouse interaction (Glow)
   float dist = distance(aspectUV, aspectMouse);
-  float glowRadius = 0.4;
+  float glowRadius = 0.5;
   float glow = 1.0 - smoothstep(0.0, glowRadius, dist);
   
-  // Elegant Color Palette
-  vec3 baseColor = vec3(0.02, 0.02, 0.03); // Very dark slate/black
-  vec3 gridColor = vec3(0.15, 0.15, 0.2);  // Subtle slate gray lines
-  vec3 glowColor = vec3(0.8, 0.85, 0.9);   // Soft white/silver glow
+  // Colores: Usamos transparencia en lugar de un color base fijo
+  // Esto permite que el fondo CSS de la página se vea a través
+  vec3 gridColor = vec3(0.5, 0.5, 0.6); // Gris un poco más claro para visibilidad
+  vec3 glowColor = vec3(0.6, 0.7, 1.0); // Azul más brillante para el mouse
   
-  // Mix colors
-  vec3 finalColor = mix(baseColor, gridColor, lines * 0.5); // Base grid
+  // Mezcla final
+ vec3 finalColor = gridColor * lines * 0.25; 
+  finalColor += glowColor * glow * lines * 0.8;
   
-  // Add glow effect
-  // Glow lights up the lines more intensely
-  finalColor += glowColor * glow * lines * 3.0; 
-  // Ambient glow around the cursor
-  finalColor += glowColor * glow * 0.05;
-  
-  // Vignette / Fade out edges
+  // Vignette suave para que el grid desaparezca en los bordes
   float centerDist = distance(uv, vec2(0.5));
-  float alpha = 1.0 - smoothstep(0.3, 0.8, centerDist);
+  float alpha = 1.0 - smoothstep(0.2, 0.9, centerDist);
   
-  gl_FragColor = vec4(finalColor, 1.0);
+  // Multiplicamos el alpha de las líneas por el vignette
+  // Importante: No pintamos fondo negro, solo líneas con alpha
+  gl_FragColor = vec4(finalColor, lines * alpha * 0.8); 
 }
 `;
 
@@ -79,13 +79,10 @@ export const InteractiveGrid = () => {
         [viewport]
     );
 
-    // Use a global event listener to track mouse position
-    // This ensures the grid reacts even when hovering over other UI elements
     useEffect(() => {
         const handleMouseMove = (event: MouseEvent) => {
-            // Normalize mouse position to 0..1
             const x = event.clientX / window.innerWidth;
-            const y = 1 - (event.clientY / window.innerHeight); // Flip Y for shader UVs
+            const y = 1 - (event.clientY / window.innerHeight);
             mousePosition.current.set(x, y);
         };
 
@@ -100,9 +97,8 @@ export const InteractiveGrid = () => {
             const material = meshRef.current.material as THREE.ShaderMaterial;
             material.uniforms.uTime.value = state.clock.getElapsedTime();
             material.uniforms.uResolution.value.set(state.viewport.width, state.viewport.height);
-
-            // Directly set the mouse value without lerp for instant response
-            material.uniforms.uMouse.value.copy(mousePosition.current);
+            // Lerp para suavizar el movimiento del glow
+            material.uniforms.uMouse.value.lerp(mousePosition.current, 0.1);
         }
     });
 
@@ -113,7 +109,8 @@ export const InteractiveGrid = () => {
                 vertexShader={vertexShader}
                 fragmentShader={fragmentShader}
                 uniforms={uniforms}
-                transparent={true}
+                transparent={true} // CRUCIAL para ver el fondo CSS
+                depthWrite={false}
             />
         </mesh>
     );

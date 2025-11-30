@@ -1,0 +1,44 @@
+[
+    {
+        "title": "Proyecto Alpha",
+        "description": "Una solución innovadora para aplicaciones web modernas con funciones de colaboración en tiempo real y visualización de datos avanzada.",
+        "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+        "tags": [
+            "React",
+            "TypeScript",
+            "Node.js",
+            "WebSocket"
+        ],
+        "links": {
+            "demo": "https://example.com",
+            "github": "https://github.com"
+        }
+    },
+    {
+        "title": "Proyecto Beta",
+        "description": "Una plataforma creativa que conecta a diseñadores y desarrolladores a través de una interfaz intuitiva y potentes herramientas de colaboración.",
+        "image": "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7",
+        "tags": [
+            "Next.js",
+            "Tailwind",
+            "PostgreSQL"
+        ],
+        "links": {
+            "demo": "https://example.com"
+        }
+    },
+    {
+        "title": "Proyecto Gamma",
+        "description": "Un panel de análisis impulsado por IA que transforma datos complejos en información práctica con visualizaciones atractivas.",
+        "image": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
+        "tags": [
+            "Python",
+            "TensorFlow",
+            "React",
+            "D3.js"
+        ],
+        "links": {
+            "github": "https://github.com"
+        }
+    }
+]
